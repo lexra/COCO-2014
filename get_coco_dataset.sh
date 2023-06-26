@@ -8,19 +8,16 @@ mkdir images
 pushd images
 
 # Download Images
-#very slow downloading
-#wget -c https://pjreddie.com/media/files/train2014.zip -O train2014.zip
-#wget -c https://pjreddie.com/media/files/val2014.zip -O val2014.zip
-wget -c http://images.cocodataset.org/zips/train2014.zip -O train2014.zip
-wget -c http://images.cocodataset.org/zips/val2014.zip -O val2014.zip
-wget -c http://images.cocodataset.org/zips/test2014.zip -O test2014.zip
-wget -c http://images.cocodataset.org/annotations/annotations_trainval2014.zip -O annotations_trainval2014.zip
+[ ! -e train2014.zip ] && wget -c http://images.cocodataset.org/zips/train2014.zip -O train2014.zip
+[ ! -e val2014.zip ] && wget -c http://images.cocodataset.org/zips/val2014.zip -O val2014.zip
+[ ! -e test2014.zip ] && wget -c http://images.cocodataset.org/zips/test2014.zip -O test2014.zip
+#[ ! -e annotations_trainval2014.zip ] && wget -c http://images.cocodataset.org/annotations/annotations_trainval2014.zip -O annotations_trainval2014.zip
 
 # Unzip
 unzip -o train2014.zip
 unzip -o val2014.zip
 unzip -o test2014.zip
-unzip -o annotations_trainval2014.zip
+#unzip -o annotations_trainval2014.zip
 
 popd
 
@@ -38,6 +35,6 @@ paste <(awk "{print \"$PWD\"}" <trainvalno5k.part) trainvalno5k.part | tr -d '\t
 
 popd
 
-python3 -c 'import sys, yaml, json; print(yaml.dump(json.loads(sys.stdin.read())))' < coco/annotations/instances_train2014.json > coco/annotations/instances_train2014.yaml
+#python3 -c 'import sys, yaml, json; print(yaml.dump(json.loads(sys.stdin.read())))' < coco/annotations/instances_train2014.json > coco/annotations/instances_train2014.yaml
 
 exit 0
