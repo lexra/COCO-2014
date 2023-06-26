@@ -16,16 +16,16 @@ popd
 popd
 
 ##############################
-for I in `sed 's/ /_/g' coco/coco.names`; do echo -n "${I}, "; done | sed 's/_/ /g' > coco/coco.cat
-sed 's/, $//' -i coco/coco.cat
+for I in `sed 's/ /_/g' cfg/coco.names`; do echo -n "${I}, "; done | sed 's/_/ /g' > cfg/coco.cat
+sed 's/, $//' -i cfg/coco.cat
 
 ##############################
 git clone https://github.com/tw-yshuang/coco2yolo.git || true
 export PYTHONPATH=`pwd`/coco2yolo:${PYTHONPATH}
 rm -rfv coco/labels/train2014
-coco2yolo/coco2yolo -ann-path coco/annotations/instances_train2014.json -img-dir coco/images/train2014 -task-dir coco/labels/train2014 < coco/coco.cat
+coco2yolo/coco2yolo -ann-path coco/annotations/instances_train2014.json -img-dir coco/images/train2014 -task-dir coco/labels/train2014 < cfg/coco.cat
 rm -rfv coco/labels/val2014
-coco2yolo/coco2yolo -ann-path coco/annotations/instances_val2014.json -img-dir coco/images/val2014 -task-dir coco/labels/val2014 < coco/coco.cat
+coco2yolo/coco2yolo -ann-path coco/annotations/instances_val2014.json -img-dir coco/images/val2014 -task-dir coco/labels/val2014 < cfg/coco.cat
 
 ##############################
 mkdir -p backup
