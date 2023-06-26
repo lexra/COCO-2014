@@ -28,6 +28,7 @@ rm -rf coco/labels/train2014
 coco2yolo/coco2yolo -ann-path coco/annotations/instances_train2014.json -img-dir coco/images/train2014 -task-dir coco/labels/train2014 < cfg/coco.cat
 rm -rf coco/labels/val2014
 coco2yolo/coco2yolo -ann-path coco/annotations/instances_val2014.json -img-dir coco/images/val2014 -task-dir coco/labels/val2014 < cfg/coco.cat
+rm -rf cfg/coco.cat
 
 ##############################
 mkdir -p backup
