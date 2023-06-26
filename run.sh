@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+GPUS="-gpus 0"
+
 ##############################
 [ ! -e coco/PythonAPI/setup.py ] && exit 1
 
@@ -29,10 +31,7 @@ coco2yolo/coco2yolo -ann-path coco/annotations/instances_val2014.json -img-dir c
 
 ##############################
 mkdir -p backup
-if [ "$TERM" == "xterm" ]; then
-	../darknet detector train cfg/coco.data cfg/yolo-fastest-coco.cfg -dont_show -map -gpus 0
-else
-	../darknet detector train cfg/coco.data cfg/yolo-fastest-coco.cfg -gpus 0
-fi
+[ "$TERM" == "xterm" ] && GPUS="${GPUS} -dont_show -map"
+../darknet detector train cfg/coco.data cfg/yolo-fastest-coco.cfg ${GPUS}
 
 exit 0
