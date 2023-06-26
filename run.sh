@@ -31,8 +31,13 @@ coco2yolo/coco2yolo -ann-path coco/annotations/instances_val2014.json -img-dir c
 rm -rf cfg/coco.cat
 
 ##############################
-mkdir -p backup
+CLASSES=`wc -l cfg/coco.names | awk '{print $1}'`
+git checkout cfg/yolo-fastest-coco.cfg
+sed "s/classes=80/classes=${CLASSES}/g" -i cfg/yolo-fastest-coco.cfg
+
+##############################
 [ "$TERM" == "xterm" ] && GPUS="${GPUS} -dont_show -map"
+mkdir -p backup
 ../darknet detector train cfg/coco.data cfg/yolo-fastest-coco.cfg ${GPUS}
 
 exit 0
