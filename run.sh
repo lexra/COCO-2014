@@ -18,7 +18,7 @@ popd
 popd
 
 ##############################
-for I in `sed 's/ /_/g' cfg/coco.names`; do echo -n "${I}, "; done | sed 's/_/ /g' > cfg/coco.cat
+for C in `sed 's/ /_/g' cfg/coco.names`; do echo -n "${C}, "; done | sed 's/_/ /g' > cfg/coco.cat
 sed 's/, $//' -i cfg/coco.cat
 
 ##############################
