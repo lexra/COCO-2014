@@ -8,8 +8,9 @@ GPUS="-gpus 0"
 #WEIGHTS=""
 WEIGHTS="weights/darknet53.conv.74"
 
+CFG=cfg/yolo-fastest-1.1_160_person.cfg
 #CFG="cfg/yolov3-tiny.cfg"
-CFG="cfg/yolo-fastest-coco.cfg"
+#CFG="cfg/yolo-fastest-coco.cfg"
 
 ##############################
 [ ! -e coco/PythonAPI/setup.py ] && exit 1
@@ -48,7 +49,7 @@ MAX_BATCHES=`echo "${CLASSES} * 2000" | bc`
 S8=`echo "${MAX_BATCHES} * 8 / 10" | bc`; S9=`echo "${MAX_BATCHES} * 9 / 10" | bc`
 STEPS=`echo ${S8},${S9}`
 if [ 1 -eq ${AUTO_CORRECTION} ]; then
-	git checkout cfg/yolo-fastest-coco.cfg
+	git checkout ${CFG}
 	sed "s/classes=80/classes=${CLASSES}/g" -i ${CFG}
 	sed "s/filters=255/filters=${FILTERS}/g" -i ${CFG}
 	sed "s/max_batches=500000/max_batches=${MAX_BATCHES}/g" -i ${CFG}
