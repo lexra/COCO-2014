@@ -32,8 +32,10 @@ rm -rf cfg/coco.cat
 
 ##############################
 CLASSES=`wc -l cfg/coco.names | awk '{print $1}'`
+FILTERS=`echo "($CLASSES + 5) * 3" | bc`
 git checkout cfg/yolo-fastest-coco.cfg
 sed "s/classes=80/classes=${CLASSES}/g" -i cfg/yolo-fastest-coco.cfg
+sed "s/filters=255/filters=${FILTERS}/g" -i cfg/yolo-fastest-coco.cfg
 
 ##############################
 [ "$TERM" == "xterm" ] && GPUS="${GPUS} -dont_show -map"
