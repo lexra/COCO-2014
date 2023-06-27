@@ -35,6 +35,11 @@ paste <(awk "{print \"$PWD\"}" <trainvalno5k.part) trainvalno5k.part | tr -d '\t
 
 popd
 
+mkdir -p weights
+pushd weights
+wget https://pjreddie.com/media/files/darknet53.conv.74 -O darknet53.conv.74
+popd
+
 #python3 -c 'import sys, yaml, json; print(yaml.dump(json.loads(sys.stdin.read())))' < coco/annotations/instances_train2014.json > coco/annotations/instances_train2014.yaml
 
 exit 0
