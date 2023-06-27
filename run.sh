@@ -5,8 +5,9 @@ AUTO_CORRECTION=1
 #GPUS=""
 GPUS="-gpus 0"
 
-#WEIGHTS=""
-WEIGHTS="weights/darknet53.conv.74"
+#WEIGHT=""
+#WEIGHT="weights/darknet53.conv.74"
+WEIGHT="weights/yolo-fastest.conv.109"
 
 CFG=cfg/yolo-fastest-1.1_160_person.cfg
 #CFG="cfg/yolov3-tiny.cfg"
@@ -36,10 +37,10 @@ git clone https://github.com/tw-yshuang/coco2yolo.git || true
 export PYTHONPATH=`pwd`/coco2yolo:${PYTHONPATH}
 
 rm -rf coco/labels/train2014
-coco2yolo/coco2yolo -ann-path coco/annotations/instances_train2014.json -img-dir coco/images/train2014 -task-dir coco/labels/train2014 < cfg/coco.cat
+coco2yolo/coco2yolo -ann-path coco/annotations/instances_train2014.json -img-dir coco/images/train2014 -task-dir coco/labels/train2014 -set union < cfg/coco.cat
 
 rm -rf coco/labels/val2014
-coco2yolo/coco2yolo -ann-path coco/annotations/instances_val2014.json -img-dir coco/images/val2014 -task-dir coco/labels/val2014 < cfg/coco.cat
+coco2yolo/coco2yolo -ann-path coco/annotations/instances_val2014.json -img-dir coco/images/val2014 -task-dir coco/labels/val2014 -set union < cfg/coco.cat
 rm -rf cfg/coco.cat
 
 ##############################
@@ -59,6 +60,6 @@ fi
 ##############################
 [ "$TERM" == "xterm" ] && GPUS="${GPUS} -dont_show -map"
 mkdir -p backup
-../darknet detector train cfg/coco.data ${CFG} ${GPUS} ${WEIGHTS}
+../darknet detector train cfg/coco.data ${CFG} ${GPUS} ${WEIGHT}
 
 exit 0
