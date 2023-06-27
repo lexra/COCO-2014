@@ -10,13 +10,13 @@ pushd images
 # Download Images
 [ ! -e train2014.zip ] && wget -c http://images.cocodataset.org/zips/train2014.zip -O train2014.zip
 [ ! -e val2014.zip ] && wget -c http://images.cocodataset.org/zips/val2014.zip -O val2014.zip
-[ ! -e test2014.zip ] && wget -c http://images.cocodataset.org/zips/test2014.zip -O test2014.zip
+#[ ! -e test2014.zip ] && wget -c http://images.cocodataset.org/zips/test2014.zip -O test2014.zip
 #[ ! -e annotations_trainval2014.zip ] && wget -c http://images.cocodataset.org/annotations/annotations_trainval2014.zip -O annotations_trainval2014.zip
 
 # Unzip
 unzip -o train2014.zip
 unzip -o val2014.zip
-unzip -o test2014.zip
+#unzip -o test2014.zip
 #unzip -o annotations_trainval2014.zip
 
 popd
