@@ -1,16 +1,16 @@
 #!/bin/bash -e
 
-AUTO_CORRECTION=1
+CFG_ADJUSTMENT=0
 
 #GPUS=""
 GPUS="-gpus 0"
 
 #WEIGHT=""
-#WEIGHT="weights/darknet53.conv.74"
-WEIGHT="weights/yolo-fastest.conv.109"
+WEIGHT="weights/darknet53.conv.74"
+#WEIGHT="weights/yolo-fastest.conv.109"
 
-CFG=cfg/yolo-fastest-1.1_160_person.cfg
-#CFG="cfg/yolov3-tiny.cfg"
+#CFG=cfg/yolo-fastest-1.1_160_person.cfg
+CFG="cfg/yolov3-tiny.cfg"
 #CFG="cfg/yolo-fastest-coco.cfg"
 
 ##############################
@@ -45,11 +45,12 @@ rm -rf cfg/coco.cat
 
 ##############################
 CLASSES=`wc -l cfg/coco.names | awk '{print $1}'`
+sed "1s/classes = [0-9]\+/classes = $CLASSES/" -i cfg/coco.data
 FILTERS=`echo "(${CLASSES} + 5) * 3" | bc`
 MAX_BATCHES=`echo "${CLASSES} * 2000" | bc`
 S8=`echo "${MAX_BATCHES} * 8 / 10" | bc`; S9=`echo "${MAX_BATCHES} * 9 / 10" | bc`
 STEPS=`echo ${S8},${S9}`
-if [ 1 -eq ${AUTO_CORRECTION} ]; then
+if [ 1 -eq ${CFG_ADJUSTMENT} ]; then
 	git checkout ${CFG}
 	sed "s/classes=80/classes=${CLASSES}/g" -i ${CFG}
 	sed "s/filters=255/filters=${FILTERS}/g" -i ${CFG}
