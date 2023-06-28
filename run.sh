@@ -5,8 +5,8 @@ CFG_ADJUSTMENT=0
 #GPUS=""
 GPUS="-gpus 0"
 
-#WEIGHT=""
-WEIGHT="weights/darknet53.conv.74"
+WEIGHT=""
+#WEIGHT="weights/darknet53.conv.74"
 #WEIGHT="weights/yolo-fastest.conv.109"
 
 #CFG=cfg/yolo-fastest-1.1_160_person.cfg
