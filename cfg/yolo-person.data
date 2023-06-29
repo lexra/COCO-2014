@@ -1,0 +1,6 @@
+classes = 1
+train = coco/trainvalno5k.txt
+valid = coco/5k.txt
+names = cfg/yolo-person.names
+backup = backup
+eval=coco
