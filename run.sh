@@ -43,6 +43,7 @@ rm -rf cfg/coco.cat
 
 ##############################
 [ "$TERM" == "xterm" ] && GPUS="${GPUS} -dont_show -map"
+ln -sf coco data
 ../darknet detector train cfg/${NAME}.data ${CFG} ${WEIGHT} ${GPUS}
 
 ##############################
