@@ -35,10 +35,10 @@ export PYTHONPATH=`pwd`/coco2yolo:${PYTHONPATH}
 ##############################
 for C in `sed 's/ /_/g' cfg/${NAME}.names`; do echo -n "${C}, "; done | sed 's/_/ /g' > cfg/coco.cat
 sed 's/, $//' -i cfg/coco.cat
-rm -rf coco/labels/train2014
-coco2yolo/coco2yolo -ann-path coco/annotations/instances_train2014.json -img-dir coco/images/train2014 -task-dir coco/labels/train2014 -set union < cfg/coco.cat
-rm -rf coco/labels/val2014
-coco2yolo/coco2yolo -ann-path coco/annotations/instances_val2014.json -img-dir coco/images/val2014 -task-dir coco/labels/val2014 -set union < cfg/coco.cat
+#rm -rf coco/labels/train2014
+#coco2yolo/coco2yolo -ann-path coco/annotations/instances_train2014.json -img-dir coco/images/train2014 -task-dir coco/labels/train2014 -set union < cfg/coco.cat
+#rm -rf coco/labels/val2014
+#coco2yolo/coco2yolo -ann-path coco/annotations/instances_val2014.json -img-dir coco/images/val2014 -task-dir coco/labels/val2014 -set union < cfg/coco.cat
 rm -rf cfg/coco.cat
 
 ##############################
@@ -50,5 +50,4 @@ ln -sf coco data
 ##############################
 echo ""
 echo "../darknet detector test cfg/${NAME}.data cfg/${NAME}.cfg backup/${NAME}_final.weights pixmaps/dog.jpg -dont_show"
-
 exit 0
