@@ -4,7 +4,7 @@ NAME="yolo-default"
 CFG="cfg/${NAME}.cfg"
 
 GPUS="-gpus 0"
-WEIGHT=""
+WEIGHTS=""
 
 ##############################
 [ ! -e coco/PythonAPI/setup.py ] && exit 1
@@ -23,8 +23,6 @@ pushd coco/images
 popd
 
 ##############################
-for C in `sed 's/ /_/g' cfg/${NAME}.names`; do echo -n "${C}, "; done | sed 's/_/ /g' > cfg/coco.cat
-sed 's/, $//' -i cfg/coco.cat
 git clone https://github.com/tw-yshuang/coco2yolo.git || true
 git clone https://github.com/immersive-limit/coco-manager.git || true
 export PYTHONPATH=`pwd`/coco2yolo:${PYTHONPATH}
@@ -35,6 +33,8 @@ export PYTHONPATH=`pwd`/coco2yolo:${PYTHONPATH}
 #	--categories person bicycle car motorcycle airplane bus train truck boat
 
 ##############################
+for C in `sed 's/ /_/g' cfg/${NAME}.names`; do echo -n "${C}, "; done | sed 's/_/ /g' > cfg/coco.cat
+sed 's/, $//' -i cfg/coco.cat
 rm -rf coco/labels/train2014
 coco2yolo/coco2yolo -ann-path coco/annotations/instances_train2014.json -img-dir coco/images/train2014 -task-dir coco/labels/train2014 -set union < cfg/coco.cat
 rm -rf coco/labels/val2014
@@ -44,9 +44,11 @@ rm -rf cfg/coco.cat
 ##############################
 [ "$TERM" == "xterm" ] && GPUS="${GPUS} -dont_show -map"
 ln -sf coco data
-../darknet detector train cfg/${NAME}.data ${CFG} ${WEIGHT} ${GPUS}
+[ -e "backup/${NAME}_last.weights" ] && WEIGHTS="backup/${NAME}_last.weights"
+../darknet detector train cfg/${NAME}.data ${CFG} ${WEIGHTS} ${GPUS}
 
 ##############################
-#../darknet detector test cfg/${NAME}.data cfg/${NAME}.cfg weights/yolov3-tiny.weights pixmaps//dog.jpg -dont_show
+echo ""
+echo "../darknet detector test cfg/${NAME}.data cfg/${NAME}.cfg backup/${NAME}_final.weights pixmaps/dog.jpg -dont_show"
 
 exit 0
