@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-NAME="yolo-person"
+NAME="yolo-default"
 CFG="cfg/${NAME}.cfg"
 
 GPUS="-gpus 0"
