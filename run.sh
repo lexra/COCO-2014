@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-NAME="yolo-default"
+NAME="yolo-person"
 CFG="cfg/${NAME}.cfg"
 
 GPUS="-gpus 0"
@@ -25,12 +25,17 @@ popd
 ##############################
 git clone https://github.com/tw-yshuang/coco2yolo.git || true
 git clone https://github.com/immersive-limit/coco-manager.git || true
+git clone https://github.com/alexmihalyk23/COCO2YOLO.git || true
 export PYTHONPATH=`pwd`/coco2yolo:${PYTHONPATH}
 
 ##############################
 #python3 coco-manager/filter.py --input_json coco/annotations/instances_train2014.json \
 #	--output_json coco/annotations/filter_train2014.json \
 #	--categories person bicycle car motorcycle airplane bus train truck boat
+
+##############################
+python3 COCO2YOLO/COCO2YOLO.py -j coco/annotations/instances_train2014.json -o coco/labels/train2014
+python3 COCO2YOLO/COCO2YOLO.py -j coco/annotations/instances_val2014.json -o coco/labels/train2014
 
 ##############################
 for C in `sed 's/ /_/g' cfg/${NAME}.names`; do echo -n "${C}, "; done | sed 's/_/ /g' > cfg/coco.cat
@@ -49,5 +54,6 @@ ln -sf coco data
 
 ##############################
 echo ""
-echo "../darknet detector test cfg/${NAME}.data cfg/${NAME}.cfg backup/${NAME}_final.weights pixmaps/dog.jpg -dont_show"
+echo "Detector Test: "
+echo "../darknet detector test cfg/${NAME}.data cfg/${NAME}.cfg backup/${NAME}_final.weights pixmaps/people.jpg"
 exit 0
