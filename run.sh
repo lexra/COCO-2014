@@ -48,7 +48,7 @@ rm -rf cfg/coco.cat
 
 ##############################
 [ "$TERM" == "xterm" ] && GPUS="${GPUS} -dont_show -map"
-ln -sf coco data
+[ -e ../data/labels/100_0.png ] && ln -sf ../data .
 [ -e "backup/${NAME}_last.weights" ] && WEIGHTS="backup/${NAME}_last.weights"
 ../darknet detector train cfg/${NAME}.data ${CFG} ${WEIGHTS} ${GPUS}
 
