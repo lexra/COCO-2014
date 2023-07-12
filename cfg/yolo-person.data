@@ -1,6 +1,5 @@
 classes = 1
-train = coco/trainvalno5k.txt
-valid = coco/5k.txt
-names = cfg/yolo-person.names
-backup = backup
-eval=coco
+train = /work/himax/Yolo-Fastest/COCO-2014/coco/trainvalno5k.txt
+valid = /work/himax/Yolo-Fastest/COCO-2014/coco/5k.txt
+names = /work/himax/Yolo-Fastest/COCO-2014/cfg/yolo-person.names
+backup = /work/himax/Yolo-Fastest/COCO-2014/backup

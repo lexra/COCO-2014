@@ -1,6 +1,7 @@
 #!/bin/bash -e
 
-NAME="yolo-default"
+#NAME="yolo-default"
+NAME="yolo-person"
 CFG="cfg/${NAME}.cfg"
 
 GPUS="-gpus 0"
@@ -14,6 +15,7 @@ pushd coco
 paste <(awk "{print \"$PWD\"}" <5k.part) 5k.part | tr -d '\t' > 5k.txt
 paste <(awk "{print \"$PWD\"}" <trainvalno5k.part) trainvalno5k.part | tr -d '\t' > trainvalno5k.txt
 popd
+sed "s|^/work/himax/Yolo-Fastest/COCO-2014|`pwd`|" -i cfg/${NAME}.data
 
 ##############################
 pushd coco/images
@@ -34,8 +36,12 @@ export PYTHONPATH=`pwd`/coco2yolo:${PYTHONPATH}
 #	--categories person bicycle car motorcycle airplane bus train truck boat
 
 ##############################
-python3 COCO2YOLO/COCO2YOLO.py -j coco/annotations/instances_train2014.json -o coco/labels/train2014
-python3 COCO2YOLO/COCO2YOLO.py -j coco/annotations/instances_val2014.json -o coco/labels/train2014
+find coco/images/train2014 -name "*.txt" | xargs rm -rf
+find coco/images/val2014 -name "*.txt" | xargs rm -rf
+#python3 COCO2YOLO/COCO2YOLO.py -j coco/annotations/instances_train2014.json -o coco/images/train2014
+#python3 COCO2YOLO/COCO2YOLO.py -j coco/annotations/instances_val2014.json -o coco/images/val2014
+python3 COCO2YOLO/COCO2YOLO.py -j coco/images/annotations/instances_train2014.json -o coco/images/train2014
+python3 COCO2YOLO/COCO2YOLO.py -j coco/images/annotations/instances_val2014.json -o coco/images/val2014
 
 ##############################
 for C in `sed 's/ /_/g' cfg/${NAME}.names`; do echo -n "${C}, "; done | sed 's/_/ /g' > cfg/coco.cat
@@ -49,11 +55,25 @@ rm -rf cfg/coco.cat
 ##############################
 [ "$TERM" == "xterm" ] && GPUS="${GPUS} -dont_show -map"
 [ -e ../data/labels/100_0.png ] && ln -sf ../data .
+mkdir -p backup
 [ -e "backup/${NAME}_last.weights" ] && WEIGHTS="backup/${NAME}_last.weights"
 ../darknet detector train cfg/${NAME}.data ${CFG} ${WEIGHTS} ${GPUS}
 
 ##############################
+if [ -e ../keras-YOLOv3-model-set/tools/model_converter/fastest_1.1_160/convert.py ]; then
+	python3 ../keras-YOLOv3-model-set/tools/model_converter/fastest_1.1_160/convert.py \
+		--config_path cfg/${NAME}.cfg \
+		--weights_path backup/${NAME}_final.weights \
+		--output_path backup/${NAME}.h5
+	python3 ../keras-YOLOv3-model-set/tools/model_converter/fastest_1.1_160/post_train_quant_convert_demo.py \
+		--keras_model_file backup/${NAME}.h5 \
+		--annotation_file coco/trainvalno5k.txt \
+		--output_file backup/${NAME}.tflite
+	xxd -i backup/${NAME}.tflite > backup/${NAME}.cc
+fi
+
+##############################
 echo ""
 echo "Detector Test: "
-echo "../darknet detector test cfg/${NAME}.data cfg/${NAME}.cfg backup/${NAME}_final.weights pixmaps/people.jpg"
+echo "../darknet detector test cfg/${NAME}.data cfg/${NAME}.cfg backup/${NAME}_final.weights COCO-2014/pixmaps/people.jpg"
 exit 0

@@ -2,5 +2,4 @@ classes = 80
 train = /work/himax/Yolo-Fastest/COCO-2014/coco/trainvalno5k.txt
 valid = /work/himax/Yolo-Fastest/COCO-2014/coco/5k.txt
 names = /work/himax/Yolo-Fastest/COCO-2014/cfg/yolo-grayscale.names
-backup = backup
-eval = coco
+backup = /work/himax/Yolo-Fastest/COCO-2014/backup
