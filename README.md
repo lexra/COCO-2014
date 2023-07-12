@@ -38,7 +38,9 @@ cat coco/images/train2014/COCO_train2014_000000581921.txt
 #### Translation from a given JSON file
 
 ```bash
-python3 COCO2YOLO/COCO2YOLO.py -j coco/images/annotations/instances_train2014.json -o coco/images/train2014
+python3 COCO2YOLO/COCO2YOLO.py \
+    -j coco/images/annotations/instances_train2014.json \
+    -o coco/images/train2014
 ```
 
 ### Detector
