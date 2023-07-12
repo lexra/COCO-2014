@@ -234,7 +234,7 @@ person: 40%
 
 ### .CC file Generation
 
-#### Packages Requirement
+#### Python Packages Requirement
 
 ```bash
 typing-extensions==3.10.0
