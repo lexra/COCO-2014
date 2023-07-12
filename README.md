@@ -41,6 +41,80 @@ cat coco/images/train2014/COCO_train2014_000000581921.txt
 python3 COCO2YOLO/COCO2YOLO.py -j coco/images/annotations/instances_train2014.json -o coco/images/train2014
 ```
 
+### Generating .CC file
+
+#### Packages Requirement
+
+```bash
+typing-extensions==3.10.0
+python-dateutil==2.8.2
+packaging==21.2
+flatbuffers==23.1.21
+requests==2.31.0
+chardet==4.0.0
+elastic-transport==8.0.0
+google-auth==2.15.0
+protobuf==3.20.3
+urllib3==1.26.2
+grpcio==1.48.2
+testresources
+numpy==1.23.5
+setuptools
+scipy
+scikit-learn==0.20.3
+opencv-python==4.2.0.32
+opencv-contrib-python==4.2.0.32
+tensorflow==2.13.0
+tensorrt
+keras_applications
+tensorflow-model-optimization==0.5.0
+tensorflow-addons
+matplotlib
+tqdm
+pillow
+mnn
+Cython
+pycocotools
+keras2onnx
+tf2onnx==0.4.2
+onnx
+onnxruntime
+tfcoreml==1.1
+sympy
+imgaug
+imagecorruptions
+bokeh==2.4.0
+tidecv
+```
+
+```bash
+pip3 install -r requirements.txt
+```
+
+#### Convert to Keras
+
+```bash
+python3 ../keras-YOLOv3-model-set/tools/model_converter/fastest_1.1_160/convert.py \
+    --config_path cfg/yolo-person.cfg \
+    --weights_path backup/yolo-person.weights \
+    --output_path backup/yolo-person.h5
+```
+
+#### Convert to Tensorflow Lite
+
+```bash
+python3 ../keras-YOLOv3-model-set/tools/model_converter/fastest_1.1_160/post_train_quant_convert_demo.py \
+    --keras_model_file backup/yolo-person.h5 \
+    --annotation_file coco/trainvalno5k.txt \
+    --output_file backup/yolo-person.tflite
+```
+
+#### XXD
+
+```
+xxd -i backup/yolo-person.tflite > backup/yolo-person.cc
+```
+
 ### Detector Test
 
 ![image](https://github.com/lexra/COCO-2014/assets/33512027/ef1e20ee-4a6f-496c-9100-8785c1d6258e)
