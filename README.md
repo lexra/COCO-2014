@@ -25,6 +25,7 @@ ls -l coco/images/train2014
 ...
 -rw-rw-r-- 1 jasonc jasonc   70995 Aug 16  2014 COCO_train2014_000000581921.jpg
 -rw-rw-r-- 1 jasonc jasonc      77 Jul 12 18:06 COCO_train2014_000000581921.txt
+...
 ```
 
 ```bash
