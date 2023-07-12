@@ -27,7 +27,7 @@ ls -l coco/images/train2014
 -rw-rw-r-- 1 jasonc jasonc      77 Jul 12 18:06 COCO_train2014_000000581921.txt
 ```
 
-```
+```bash
 cat coco/images/train2014/COCO_train2014_000000581921.txt
 ...
 0 0.425047 0.276405 0.334344 0.516838
@@ -36,7 +36,7 @@ cat coco/images/train2014/COCO_train2014_000000581921.txt
 
 #### Translation from JSON
 
-```
+```bash
 python3 COCO2YOLO/COCO2YOLO.py -j coco/images/annotations/instances_train2014.json -o coco/images/train2014
 ```
 
