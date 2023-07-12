@@ -16,12 +16,17 @@ wget -c https://pjreddie.com/media/files/coco/5k.part -O 5k.part
 paste <(awk "{print \"$PWD\"}" <5k.part) 5k.part | tr -d '\t' > 5k.txt
 ```
 
-
+### Detector Test
 
 ![image](https://github.com/lexra/COCO-2014/assets/33512027/ef1e20ee-4a6f-496c-9100-8785c1d6258e)
 
 ```bash
-../darknet detector test cfg/yolo-person.data cfg/yolo-person.cfg backup/yolo-person_final.weights pixmaps/people.jpg -thresh 0.40 -dont_show
+../darknet detector test \
+	   cfg/yolo-person.data \
+    cfg/yolo-person.cfg backup/yolo-person_final.weights \
+    pixmaps/people.jpg \
+    -thresh 0.40 \
+    -dont_show
 ```
 
 ```bash
