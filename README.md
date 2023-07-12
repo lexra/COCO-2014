@@ -43,7 +43,7 @@ python3 COCO2YOLO/COCO2YOLO.py \
     -o coco/images/train2014
 ```
 
-### Generating Printable Png files from `Futura_Medium.ttf` for Labeling
+### Generating Printable Png files from `Futura_Medium.ttf` for Labels
 
 #### Copy the `Futura_Medium.ttf` to /usr/share/fonts/truetype/dongle/Futura_Medium.ttf
 
@@ -103,7 +103,7 @@ index c8146f6..e1ffccf 100644
 python3 make_labels.py
 ```
 
-The following png files shall be generated. 
+The following png files for Labels shall be generated. 
 
 ```bash
 100_0.png  113_5.png  32_2.png  45_7.png  59_4.png  73_1.png  86_6.png
