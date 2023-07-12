@@ -35,7 +35,7 @@ cat coco/images/train2014/COCO_train2014_000000581921.txt
 31 0.462406 0.498700 0.064469 0.249859
 ```
 
-#### Translation from JSON
+#### Translation from a given JSON file
 
 ```bash
 python3 COCO2YOLO/COCO2YOLO.py -j coco/images/annotations/instances_train2014.json -o coco/images/train2014
