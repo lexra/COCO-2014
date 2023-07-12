@@ -43,6 +43,134 @@ python3 COCO2YOLO/COCO2YOLO.py \
     -o coco/images/train2014
 ```
 
+### Generating Printable Png files from `Futura_Medium.ttf` for Labeling
+
+#### Copy the `Futura_Medium.ttf` to /usr/share/fonts/truetype/dongle/Futura_Medium.ttf
+
+```bash
+sudo fc-cache -f -v
+```
+
+#### make_labels.py
+
+```bash
+python3 make_labels.py
+```
+
+The following png files shall be generated. 
+
+```bash
+100_0.png  113_5.png  32_2.png  45_7.png  59_4.png  73_1.png  86_6.png
+100_1.png  113_6.png  32_3.png  46_0.png  59_5.png  73_2.png  86_7.png
+100_2.png  113_7.png  32_4.png  46_1.png  59_6.png  73_3.png  87_0.png
+100_3.png  114_0.png  32_5.png  46_2.png  59_7.png  73_4.png  87_1.png
+100_4.png  114_1.png  32_6.png  46_3.png  60_0.png  73_5.png  87_2.png
+100_5.png  114_2.png  32_7.png  46_4.png  60_1.png  73_6.png  87_3.png
+100_6.png  114_3.png  33_0.png  46_5.png  60_2.png  73_7.png  87_4.png
+100_7.png  114_4.png  33_1.png  46_6.png  60_3.png  74_0.png  87_5.png
+101_0.png  114_5.png  33_2.png  46_7.png  60_4.png  74_1.png  87_6.png
+101_1.png  114_6.png  33_3.png  47_0.png  60_5.png  74_2.png  87_7.png
+101_2.png  114_7.png  33_4.png  47_1.png  60_6.png  74_3.png  88_0.png
+101_3.png  115_0.png  33_5.png  47_2.png  60_7.png  74_4.png  88_1.png
+101_4.png  115_1.png  33_6.png  47_3.png  61_0.png  74_5.png  88_2.png
+101_5.png  115_2.png  33_7.png  47_4.png  61_1.png  74_6.png  88_3.png
+101_6.png  115_3.png  34_0.png  47_5.png  61_2.png  74_7.png  88_4.png
+101_7.png  115_4.png  34_1.png  47_6.png  61_3.png  75_0.png  88_5.png
+102_0.png  115_5.png  34_2.png  47_7.png  61_4.png  75_1.png  88_6.png
+102_1.png  115_6.png  34_3.png  48_0.png  61_5.png  75_2.png  88_7.png
+102_2.png  115_7.png  34_4.png  48_1.png  61_6.png  75_3.png  89_0.png
+102_3.png  116_0.png  34_5.png  48_2.png  61_7.png  75_4.png  89_1.png
+102_4.png  116_1.png  34_6.png  48_3.png  62_0.png  75_5.png  89_2.png
+102_5.png  116_2.png  34_7.png  48_4.png  62_1.png  75_6.png  89_3.png
+102_6.png  116_3.png  35_0.png  48_5.png  62_2.png  75_7.png  89_4.png
+102_7.png  116_4.png  35_1.png  48_6.png  62_3.png  76_0.png  89_5.png
+103_0.png  116_5.png  35_2.png  48_7.png  62_4.png  76_1.png  89_6.png
+103_1.png  116_6.png  35_3.png  49_0.png  62_5.png  76_2.png  89_7.png
+103_2.png  116_7.png  35_4.png  49_1.png  62_6.png  76_3.png  90_0.png
+103_3.png  117_0.png  35_5.png  49_2.png  62_7.png  76_4.png  90_1.png
+103_4.png  117_1.png  35_6.png  49_3.png  63_0.png  76_5.png  90_2.png
+103_5.png  117_2.png  35_7.png  49_4.png  63_1.png  76_6.png  90_3.png
+103_6.png  117_3.png  36_0.png  49_5.png  63_2.png  76_7.png  90_4.png
+103_7.png  117_4.png  36_1.png  49_6.png  63_3.png  77_0.png  90_5.png
+104_0.png  117_5.png  36_2.png  49_7.png  63_4.png  77_1.png  90_6.png
+104_1.png  117_6.png  36_3.png  50_0.png  63_5.png  77_2.png  90_7.png
+104_2.png  117_7.png  36_4.png  50_1.png  63_6.png  77_3.png  91_0.png
+104_3.png  118_0.png  36_5.png  50_2.png  63_7.png  77_4.png  91_1.png
+104_4.png  118_1.png  36_6.png  50_3.png  64_0.png  77_5.png  91_2.png
+104_5.png  118_2.png  36_7.png  50_4.png  64_1.png  77_6.png  91_3.png
+104_6.png  118_3.png  37_0.png  50_5.png  64_2.png  77_7.png  91_4.png
+104_7.png  118_4.png  37_1.png  50_6.png  64_3.png  78_0.png  91_5.png
+105_0.png  118_5.png  37_2.png  50_7.png  64_4.png  78_1.png  91_6.png
+105_1.png  118_6.png  37_3.png  51_0.png  64_5.png  78_2.png  91_7.png
+105_2.png  118_7.png  37_4.png  51_1.png  64_6.png  78_3.png  92_0.png
+105_3.png  119_0.png  37_5.png  51_2.png  64_7.png  78_4.png  92_1.png
+105_4.png  119_1.png  37_6.png  51_3.png  65_0.png  78_5.png  92_2.png
+105_5.png  119_2.png  37_7.png  51_4.png  65_1.png  78_6.png  92_3.png
+105_6.png  119_3.png  38_0.png  51_5.png  65_2.png  78_7.png  92_4.png
+105_7.png  119_4.png  38_1.png  51_6.png  65_3.png  79_0.png  92_5.png
+106_0.png  119_5.png  38_2.png  51_7.png  65_4.png  79_1.png  92_6.png
+106_1.png  119_6.png  38_3.png  52_0.png  65_5.png  79_2.png  92_7.png
+106_2.png  119_7.png  38_4.png  52_1.png  65_6.png  79_3.png  93_0.png
+106_3.png  120_0.png  38_5.png  52_2.png  65_7.png  79_4.png  93_1.png
+106_4.png  120_1.png  38_6.png  52_3.png  66_0.png  79_5.png  93_2.png
+106_5.png  120_2.png  38_7.png  52_4.png  66_1.png  79_6.png  93_3.png
+106_6.png  120_3.png  39_0.png  52_5.png  66_2.png  79_7.png  93_4.png
+106_7.png  120_4.png  39_1.png  52_6.png  66_3.png  80_0.png  93_5.png
+107_0.png  120_5.png  39_2.png  52_7.png  66_4.png  80_1.png  93_6.png
+107_1.png  120_6.png  39_3.png  53_0.png  66_5.png  80_2.png  93_7.png
+107_2.png  120_7.png  39_4.png  53_1.png  66_6.png  80_3.png  94_0.png
+107_3.png  121_0.png  39_5.png  53_2.png  66_7.png  80_4.png  94_1.png
+107_4.png  121_1.png  39_6.png  53_3.png  67_0.png  80_5.png  94_2.png
+107_5.png  121_2.png  39_7.png  53_4.png  67_1.png  80_6.png  94_3.png
+107_6.png  121_3.png  40_0.png  53_5.png  67_2.png  80_7.png  94_4.png
+107_7.png  121_4.png  40_1.png  53_6.png  67_3.png  81_0.png  94_5.png
+108_0.png  121_5.png  40_2.png  53_7.png  67_4.png  81_1.png  94_6.png
+108_1.png  121_6.png  40_3.png  54_0.png  67_5.png  81_2.png  94_7.png
+108_2.png  121_7.png  40_4.png  54_1.png  67_6.png  81_3.png  95_0.png
+108_3.png  122_0.png  40_5.png  54_2.png  67_7.png  81_4.png  95_1.png
+108_4.png  122_1.png  40_6.png  54_3.png  68_0.png  81_5.png  95_2.png
+108_5.png  122_2.png  40_7.png  54_4.png  68_1.png  81_6.png  95_3.png
+108_6.png  122_3.png  41_0.png  54_5.png  68_2.png  81_7.png  95_4.png
+108_7.png  122_4.png  41_1.png  54_6.png  68_3.png  82_0.png  95_5.png
+109_0.png  122_5.png  41_2.png  54_7.png  68_4.png  82_1.png  95_6.png
+109_1.png  122_6.png  41_3.png  55_0.png  68_5.png  82_2.png  95_7.png
+109_2.png  122_7.png  41_4.png  55_1.png  68_6.png  82_3.png  96_0.png
+109_3.png  123_0.png  41_5.png  55_2.png  68_7.png  82_4.png  96_1.png
+109_4.png  123_1.png  41_6.png  55_3.png  69_0.png  82_5.png  96_2.png
+109_5.png  123_2.png  41_7.png  55_4.png  69_1.png  82_6.png  96_3.png
+109_6.png  123_3.png  42_0.png  55_5.png  69_2.png  82_7.png  96_4.png
+109_7.png  123_4.png  42_1.png  55_6.png  69_3.png  83_0.png  96_5.png
+110_0.png  123_5.png  42_2.png  55_7.png  69_4.png  83_1.png  96_6.png
+110_1.png  123_6.png  42_3.png  56_0.png  69_5.png  83_2.png  96_7.png
+110_2.png  123_7.png  42_4.png  56_1.png  69_6.png  83_3.png  97_0.png
+110_3.png  124_0.png  42_5.png  56_2.png  69_7.png  83_4.png  97_1.png
+110_4.png  124_1.png  42_6.png  56_3.png  70_0.png  83_5.png  97_2.png
+110_5.png  124_2.png  42_7.png  56_4.png  70_1.png  83_6.png  97_3.png
+110_6.png  124_3.png  43_0.png  56_5.png  70_2.png  83_7.png  97_4.png
+110_7.png  124_4.png  43_1.png  56_6.png  70_3.png  84_0.png  97_5.png
+111_0.png  124_5.png  43_2.png  56_7.png  70_4.png  84_1.png  97_6.png
+111_1.png  124_6.png  43_3.png  57_0.png  70_5.png  84_2.png  97_7.png
+111_2.png  124_7.png  43_4.png  57_1.png  70_6.png  84_3.png  98_0.png
+111_3.png  125_0.png  43_5.png  57_2.png  70_7.png  84_4.png  98_1.png
+111_4.png  125_1.png  43_6.png  57_3.png  71_0.png  84_5.png  98_2.png
+111_5.png  125_2.png  43_7.png  57_4.png  71_1.png  84_6.png  98_3.png
+111_6.png  125_3.png  44_0.png  57_5.png  71_2.png  84_7.png  98_4.png
+111_7.png  125_4.png  44_1.png  57_6.png  71_3.png  85_0.png  98_5.png
+112_0.png  125_5.png  44_2.png  57_7.png  71_4.png  85_1.png  98_6.png
+112_1.png  125_6.png  44_3.png  58_0.png  71_5.png  85_2.png  98_7.png
+112_2.png  125_7.png  44_4.png  58_1.png  71_6.png  85_3.png  99_0.png
+112_3.png  126_0.png  44_5.png  58_2.png  71_7.png  85_4.png  99_1.png
+112_4.png  126_1.png  44_6.png  58_3.png  72_0.png  85_5.png  99_2.png
+112_5.png  126_2.png  44_7.png  58_4.png  72_1.png  85_6.png  99_3.png
+112_6.png  126_3.png  45_0.png  58_5.png  72_2.png  85_7.png  99_4.png
+112_7.png  126_4.png  45_1.png  58_6.png  72_3.png  86_0.png  99_5.png
+113_0.png  126_5.png  45_2.png  58_7.png  72_4.png  86_1.png  99_6.png
+113_1.png  126_6.png  45_3.png  59_0.png  72_5.png  86_2.png  99_7.png
+113_2.png  126_7.png  45_4.png  59_1.png  72_6.png  86_3.png
+113_3.png  32_0.png   45_5.png  59_2.png  72_7.png  86_4.png
+113_4.png  32_1.png   45_6.png  59_3.png  73_0.png  86_5.png
+```
+
 ### Detector
 
 #### Detector Training
