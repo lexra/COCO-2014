@@ -43,7 +43,7 @@ python3 COCO2YOLO/COCO2YOLO.py \
     -o coco/images/train2014
 ```
 
-#### Dataset with Bounded Boxes Marking
+### Dataset with Bounded Boxes Marking
 
 ```
 ls coco/images/train2014
