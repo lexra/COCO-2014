@@ -16,6 +16,30 @@ wget -c https://pjreddie.com/media/files/coco/5k.part -O 5k.part
 paste <(awk "{print \"$PWD\"}" <5k.part) 5k.part | tr -d '\t' > 5k.txt
 ```
 
+### Bounded Boxes Marking
+
+#### Marking TXT Files
+
+```bash
+ls -l coco/images/train2014
+...
+-rw-rw-r-- 1 jasonc jasonc   70995 Aug 16  2014 COCO_train2014_000000581921.jpg
+-rw-rw-r-- 1 jasonc jasonc      77 Jul 12 18:06 COCO_train2014_000000581921.txt
+```
+
+```
+cat coco/images/train2014/COCO_train2014_000000581921.txt
+...
+0 0.425047 0.276405 0.334344 0.516838
+31 0.462406 0.498700 0.064469 0.249859
+```
+
+#### Translation from JSON
+
+```
+python3 COCO2YOLO/COCO2YOLO.py -j coco/images/annotations/instances_train2014.json -o coco/images/train2014
+```
+
 ### Detector Test
 
 ![image](https://github.com/lexra/COCO-2014/assets/33512027/ef1e20ee-4a6f-496c-9100-8785c1d6258e)
