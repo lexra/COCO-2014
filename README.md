@@ -300,6 +300,8 @@ python3 ../keras-YOLOv3-model-set/tools/model_converter/fastest_1.1_160/post_tra
     --output_file backup/yolo-person.tflite
 ```
 
+Note please, we use the `trainvalno5k.txt` for `--annotation_file` input. 
+
 #### XXD
 
 ```
