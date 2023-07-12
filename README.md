@@ -1,5 +1,14 @@
 ## COCO-2014
 
+### Annotation File
+
+#### trainvalno5k.txt
+
+```bash
+wget -c https://pjreddie.com/media/files/coco/trainvalno5k.part -O trainvalno5k.part
+paste <(awk "{print \"$PWD\"}" <trainvalno5k.part) trainvalno5k.part | tr -d '\t' > trainvalno5k.txt
+```
+
 ![image](https://github.com/lexra/COCO-2014/assets/33512027/ef1e20ee-4a6f-496c-9100-8785c1d6258e)
 
 ```bash
