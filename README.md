@@ -69,9 +69,7 @@ COCO_train2014_000000083090.txt  COCO_train2014_000000166179.jpg  COCO_train2014
 sudo fc-cache -f -v
 ```
 
-#### make_labels.py
-
-Patch the make_labels.py accordingly. 
+#### Patches
 
 ```patch
 diff --git a/data/labels/make_labels.py b/data/labels/make_labels.py
@@ -116,6 +114,10 @@ index c8146f6..e1ffccf 100644
      make_labels(i)
 -
 ```
+
+#### Make Labels
+
+Patch the make_labels.py accordingly. 
 
 ```bash
 python3 make_labels.py
