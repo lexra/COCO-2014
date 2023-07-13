@@ -6,7 +6,7 @@ requests==2.31.0
 chardet==4.0.0
 elastic-transport==8.0.0
 google-auth==2.15.0
-protobuf==3.20.3
+protobuf==3.19.6
 urllib3==1.26.2
 grpcio==1.48.2
 testresources
@@ -16,8 +16,7 @@ scipy
 scikit-learn==0.20.3
 opencv-python==4.2.0.32
 opencv-contrib-python==4.2.0.32
-tensorflow==2.13.0
-tensorrt
+tensorflow-gpu==2.11.0
 keras_applications
 tensorflow-model-optimization==0.5.0
 tensorflow-addons
@@ -37,3 +36,5 @@ imgaug
 imagecorruptions
 bokeh==2.4.0
 tidecv
+pyproject-toml
+tensorrt

@@ -1,5 +1,6 @@
-classes = 80
-train = /work/himax/Yolo-Fastest/COCO-2014/coco/trainvalno5k.txt
-valid = /work/himax/Yolo-Fastest/COCO-2014/coco/5k.txt
-names = /work/himax/Yolo-Fastest/COCO-2014/cfg/yolov3-tiny.names
-backup = backup
+classes=80
+train=/work/himax/Yolo-Fastest/COCO-2014/coco/trainvalno5k.txt
+valid=/work/himax/Yolo-Fastest/COCO-2014/coco/5k.txt
+names=/work/himax/Yolo-Fastest/COCO-2014/cfg/yolov3-tiny.names
+backup=backup
+eval=coco

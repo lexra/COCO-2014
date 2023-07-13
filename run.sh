@@ -40,8 +40,8 @@ find coco/images/train2014 -name "*.txt" | xargs rm -rf
 find coco/images/val2014 -name "*.txt" | xargs rm -rf
 #python3 COCO2YOLO/COCO2YOLO.py -j coco/annotations/instances_train2014.json -o coco/images/train2014
 #python3 COCO2YOLO/COCO2YOLO.py -j coco/annotations/instances_val2014.json -o coco/images/val2014
-python3 COCO2YOLO/COCO2YOLO.py -j coco/images/annotations/instances_train2014.json -o coco/images/train2014
-python3 COCO2YOLO/COCO2YOLO.py -j coco/images/annotations/instances_val2014.json -o coco/images/val2014
+python3 COCO2YOLO/COCO2YOLO.py -j coco/images/annotations/instances_train2014.json -o coco/images/train2014 > /dev/null
+python3 COCO2YOLO/COCO2YOLO.py -j coco/images/annotations/instances_val2014.json -o coco/images/val2014 > /dev/null
 
 ##############################
 for C in `sed 's/ /_/g' cfg/${NAME}.names`; do echo -n "${C}, "; done | sed 's/_/ /g' > cfg/coco.cat
@@ -69,6 +69,12 @@ if [ -e ../keras-YOLOv3-model-set/tools/model_converter/fastest_1.1_160/convert.
 		--keras_model_file backup/${NAME}.h5 \
 		--annotation_file coco/trainvalno5k.txt \
 		--output_file backup/${NAME}.tflite
+
+	#python3 ../keras-YOLOv3-model-set/eval_yolo_fastest_160_1ch_tflite.py \
+	#	--model_path backup/${NAME}.tflite --anchors_path cfg/${NAME}.anchors --classes_path cfg/${NAME}.names --annotation_file coco/trainvalno5k.txt --json_name ${NAME}.json || true
+	#python3 ../pycooc_person.py \
+	#	--res_path ../keras-YOLOv3-model-set/coco_results/${NAME}.json --instances_json_file coco/images/annotations/instances_train2014.json || true
+
 	xxd -i backup/${NAME}.tflite > backup/${NAME}.cc
 fi
 
